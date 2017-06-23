@@ -1,6 +1,6 @@
 # PHP 7.1 Kafka Sample Application Using Docker
 
-This is by no means a geniune application. It's merely used to test a basic producer and consumer. Code for producer and consumer taken from [https://github.com/arnaud-lb/php-rdkafka]()
+This is by no means a genuine application. It's merely used to test a basic producer and consumer. Code for producer and consumer taken from [https://github.com/arnaud-lb/php-rdkafka]()
 
 ## Run the application
 
