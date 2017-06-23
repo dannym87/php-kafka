@@ -19,7 +19,7 @@ docker-compose run --rm consumer composer install
 ### Start the consumer
 
 ```
-docker-compose run --rm --entrypoint php producer /var/www/html/run_consumer.php
+docker-compose run --rm --entrypoint php consumer /var/www/html/run_consumer.php
 ```
 
 ### Broadcast basic messages
