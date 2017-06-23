@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+        "kwn/php-rdkafka-stubs": "^1.0"
+    },
+    "require": {
+        "monolog/monolog": "^1.23"
+    }
+}
