@@ -19,15 +19,7 @@ services:
     depends_on:
       - zookeeper
 
-  producer:
-    build:
-      dockerfile: ./docker/kafka/Dockerfile
-      context: .
-    volumes:
-      - .:/var/www/html
-    working_dir: /var/www/html
-
-  consumer:
+  app:
     build:
       dockerfile: ./docker/kafka/Dockerfile
       context: .

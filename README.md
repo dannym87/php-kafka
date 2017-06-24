@@ -13,13 +13,13 @@ docker-compose up -d
 Install Composer dependencies
 
 ```
-docker-compose run --rm consumer composer install
+docker-compose run --rm app composer install
 ```
 
 ### Start the consumer
 
 ```
-docker-compose run --rm --entrypoint php consumer /var/www/html/run_consumer.php
+docker-compose run --rm --entrypoint php app run_consumer.php
 ```
 
 ### Broadcast basic messages
@@ -27,7 +27,7 @@ docker-compose run --rm --entrypoint php consumer /var/www/html/run_consumer.php
 In a separate terminal window, run;
 
 ```
-docker-compose run --rm --entrypoint php producer /var/www/html/run_producer.php
+docker-compose run --rm --entrypoint php app run_producer.php
 ```
 
 ## Verify messages are produced and consumed
