@@ -5,5 +5,5 @@ RUN apt-get update \
     && pecl install rdkafka \
     && docker-php-ext-enable rdkafka \
     # composer
-    && wget https://raw.githubusercontent.com/composer/getcomposer.org/863c57de1807c99d984f7b56f0ea56ebd7e5045b/web/installer -O - -q | php -- --quiet --install-dir=/usr/local/bin --filename=composer \
-    && chmod +x /usr/local/bin/composer
+    && curl -s https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer
