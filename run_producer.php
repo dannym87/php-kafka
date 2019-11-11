@@ -12,7 +12,10 @@ $logger = new Logger('producer');
 $logger->pushHandler(new StreamHandler(__DIR__ . '/data/logs/producer.log'));
 $logger->debug('Running producer...');
 
-$kafka = new RdKafka\Producer();
+$conf = new RdKafka\Conf();
+//$conf->set('debug','all');
+
+$kafka = new RdKafka\Producer($conf);
 $kafka->setLogLevel(LOG_DEBUG);
 $kafka->addBrokers('kafka');
 
@@ -25,6 +28,15 @@ for ($i = 0; $i < 10; $i++) {
     $kafka->poll(0);
 }
 
-while($kafka->getOutQLen() > 0) {
-    $kafka->poll(0);
+for ($flushRetries = 0; $flushRetries < 10; $flushRetries++) {
+    $result = $kafka->flush(10000);
+    if (RD_KAFKA_RESP_ERR_NO_ERROR === $result) {
+        break;
+    } else {
+        $logger->error('Error in broker when flushing: ' . $result);
+    }
+}
+
+if (RD_KAFKA_RESP_ERR_NO_ERROR !== $result) {
+    throw new \RuntimeException('Was unable to flush, messages might be lost!');
 }

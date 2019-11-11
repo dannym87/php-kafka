@@ -13,6 +13,7 @@ $logger->pushHandler(new StreamHandler(__DIR__ . '/data/logs/consumer.log'));
 $logger->debug('Running consumer...');
 
 $conf = new RdKafka\Conf();
+//$conf->set('debug','all');
 
 // Set the group id. This is required when storing offsets on the broker
 $conf->set('group.id', 'myConsumerGroup');
@@ -24,11 +25,10 @@ $topicConf = new RdKafka\TopicConf();
 $topicConf->set('auto.commit.interval.ms', 100);
 
 // Set the offset store method to 'file'
-$topicConf->set('offset.store.method', 'file');
-$topicConf->set('offset.store.path', sys_get_temp_dir());
+$topicConf->set('offset.store.method', 'broker');
 
-// Alternatively, set the offset store method to 'broker'
-// $topicConf->set('offset.store.method', 'broker');
+// Alternatively, set the offset store method to 'none'
+// $topicConf->set('offset.store.method', 'none');
 
 // Set where to start consuming messages when there is no initial offset in
 // offset store or the desired offset is out of range.
